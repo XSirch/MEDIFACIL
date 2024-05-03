@@ -1,0 +1,58 @@
+.bg-main{
+    background-color: var(--main-color);
+    height: 100vh;
+}
+
+
+.cont-cadastro{
+    width: 60%;
+}
+
+.cont-logo{
+    text-align: center;
+}
+
+.logo{
+    padding-bottom: 12px;
+}
+
+.fonte-destaque1{
+    color: var(--dark-color)
+}
+
+.btn-dark-color{
+    background-color: var(--dark-color);
+    color: white;
+}
+
+.btn-dark-color-outline{
+
+    border: 1px solid var(--dark-color);
+    color: var(--dark-color)
+
+
+}
+
+.btn-dark-color-outline:hover{
+
+    background-color: var(--dark-color);
+    color: white;
+    border: 2px solid var(--dark-color);
+}
+
+.sedan-regular {
+    font-family: "Sedan", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+  
+.sedan-regular-italic {
+    font-family: "Sedan", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+.tgl-heart{
+    position: absolute;
+}
