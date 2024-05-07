@@ -15,8 +15,8 @@
 ],
     "routes": [
         {
-            "src": "template/static/(.*)",
-            "dest": "template/static/$1"
+            "src": "/static/(.*)",
+            "dest": "/static/$1"
           },
         {
             "handle": "filesystem" 
