@@ -18,6 +18,14 @@ def cadastro_medico(request):
         especialidades = Especialidades.objects.all()
         return render(request, 'cadastro_medico.html', {'especialidades': especialidades, 'is_medico': is_medico(request.user)})
     elif request.method == "POST":
+        required_fields = ['crm', 'nome', 'cep', 'rua', 'bairro', 'numero', 'cim', 'rg', 'foto', 'especialidade', 'descricao', 'valor_consulta']
+        missing_fields = [field for field in required_fields if not request.POST.get(field) and not request.FILES.get(field)]
+
+        if missing_fields:
+            messages.add_message(request, constants.ERROR, f'Os seguintes campos são obrigatórios: {", ".join(missing_fields)}')
+            especialidades = Especialidades.objects.all()
+            return render(request, 'cadastro_medico.html', {'especialidades': especialidades, 'is_medico': is_medico(request.user)})
+
         crm = request.POST.get('crm')
         nome = request.POST.get('nome')
         cep = request.POST.get('cep')
@@ -30,8 +38,6 @@ def cadastro_medico(request):
         especialidade = request.POST.get('especialidade')
         descricao = request.POST.get('descricao')
         valor_consulta = request.POST.get('valor_consulta')
-
-        #TODO: Validar todos os campos
 
         dados_medico = DadosMedico(
             crm=crm,
@@ -49,8 +55,6 @@ def cadastro_medico(request):
             valor_consulta=valor_consulta
         )
         dados_medico.save()
-        if is_medico(request.user):
-            messages.add_message(request, constants.WARNING, 'Você já está cadastrado como médico.')
 
         messages.add_message(request, constants.SUCCESS, 'Cadastro médico realizado com sucesso.')
         return redirect('/medicos/abrir_horario')
