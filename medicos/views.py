@@ -8,6 +8,9 @@ import datetime
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+def nova_funcao():
+    pass
+
 
 @login_required
 def cadastro_medico(request):
