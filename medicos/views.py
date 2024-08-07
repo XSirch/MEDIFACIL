@@ -27,20 +27,24 @@ def cadastro_medico(request):
         if missing_fields:
             messages.add_message(request, constants.ERROR, f'Os seguintes campos são obrigatórios: {", ".join(missing_fields)}')
             especialidades = Especialidades.objects.all()
-            return render(request, 'cadastro_medico.html', {'especialidades': especialidades, 'is_medico': is_medico(request.user)})
+            return render(request, 'cadastro_medico.html', {
+                'especialidades': especialidades,
+                'is_medico': is_medico(request.user),
+                'form_data': request.POST
+            })
 
-        crm = request.POST.get('crm')
-        nome = request.POST.get('nome')
-        cep = request.POST.get('cep')
-        rua = request.POST.get('rua')
-        bairro = request.POST.get('bairro')
-        numero = request.POST.get('numero')
-        cim = request.FILES.get('cim')
-        rg = request.FILES.get('rg')
-        foto = request.FILES.get('foto')
-        especialidade = request.POST.get('especialidade')
-        descricao = request.POST.get('descricao')
-        valor_consulta = request.POST.get('valor_consulta')
+        crm = request.POST.get('crm', '')
+        nome = request.POST.get('nome', '')
+        cep = request.POST.get('cep', '')
+        rua = request.POST.get('rua', '')
+        bairro = request.POST.get('bairro', '')
+        numero = request.POST.get('numero', '')
+        cim = request.FILES.get('cim', '')
+        rg = request.FILES.get('rg', '')
+        foto = request.FILES.get('foto', '')
+        especialidade = request.POST.get('especialidade', '')
+        descricao = request.POST.get('descricao', '')
+        valor_consulta = request.POST.get('valor_consulta', '')
 
         dados_medico = DadosMedico(
             crm=crm,
